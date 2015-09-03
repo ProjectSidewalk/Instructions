@@ -11,7 +11,7 @@ Effectively using an IDE for development is an important skill that you need.
 When you are working on the projects, I highly recommend using IDE over using
 text editors. My favorite IDEs are those offered by [JetBrains](https://www.jetbrains.com/).
 They are good and they are cross-platform.
-They also offers [student license](https://www.jetbrains.com/student/).
+They also offer [student license](https://www.jetbrains.com/student/).
 
 * [IntelliJ](https://www.jetbrains.com/idea/) : For the project that use Scala,
 I recommend using IntelliJ with Scala plug-in.
@@ -48,13 +48,16 @@ while working with GIS dataset.
 * [pgShapeloader](http://suite.opengeo.org/4.1/dataadmin/pgGettingStarted/pgshapeloader.html): The tool allows you to load a shapefile into PostgreSQL.
 
 ## Dataset
+GIS dataset.
 ### Washington DC
 1. Download OSM file using wget: http://workshop.pgrouting.org/chapters/installation.html (Use the following bounding box parameter for downloading the Washington DC dataset: -76.9,39.0,-77.1,38.8)
 Or simply download the data from http://download.bbbike.org/osm/bbbike/WashingtonDC/
 2. Follow the steps to import the OSM data into the PostGIS-enabled database (or use a python script with Imposm ) http://workshop.pgrouting.org/chapters/osm2pgrouting.html
 
-## IDE (IntelliJ)
-## Debugging Play applications with IntelliJ
+## Tips and Tutorials
+Tips and tutorials.
+
+### Debugging Play applications with IntelliJ
 This is based on [this stackoverflow post](http://stackoverflow.com/questions/19473941/how-to-debug-play-application-using-activator).
 1. In a terminal, go to the root directory of your Play project. Then run: `activator -jvm-debug 9999`
 2. Start the play application by entering `run` in the activator console.
@@ -63,8 +66,23 @@ This is based on [this stackoverflow post](http://stackoverflow.com/questions/19
 5. Choose Transport: Socket, Debugger mode: Attach, Host: localhost, Port: 9999, and select the appropriate module's classpath. Click "Ok."
 6. Run a debugger and set break points. Then you should be good to go!
 
-
-## Tutorials
 ### PostGIS and pgRouting
 * FOSS4G routing with pgRouting: http://workshop.pgrouting.org/index.html
 * [Introduction to PostGIS](http://workshops.boundlessgeo.com/postgis-intro/) : A comprehensive tutorial for using PostGIS.
+
+### Git and GitHub
+As you can see, we use Git and GitHub for version controll and collaboration.
+See below for the list of concepts you should know:
+
+* Branching:
+  1. Create a branch to work on your task. You can create a branch by "git checkout -b <branch-name>"
+  2. Make changes to the code in your branch
+  3. Once you are done with editing the code, issue a "pull request"
+  4. Wait for a code to be reviewed. (You can work on other stuff by branching )
+  5. Merge the code once reviewed. If there are conflicts, resolve it. (http://stackoverflow.com/questions/161813/fix-merge-conflicts-in-git)
+* Pull Request:
+  * [Using pull requests](https://help.github.com/articles/using-pull-requests/)
+* For more information, see:
+  * [GitHub Training & Guides](https://www.youtube.com/watch?v=U8GBXvdmHT4): A YouTube channel for learning Git and GitHub.
+  * [Git tutorial by RyPress](http://rypress.com/tutorials/git/index) : This is a short and concise tutorial of GIT. I find it more approachable than the official Git documentation.
+  * [Pro Git](http://git-scm.com/doc) : The official git documentation.
