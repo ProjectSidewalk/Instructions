@@ -7,34 +7,89 @@ how to install softwares and libraries that the multiple projects rely on
 ## Development Environment
 
 ### IDE
-Effectively using an IDE for development is an important skill that you need.
-When you are working on the projects, I highly recommend using IDE over using
-text editors. My favorite IDEs are those offered by [JetBrains](https://www.jetbrains.com/).
-They are good and they are cross-platform.
-They also offer [student license](https://www.jetbrains.com/student/).
-
-* [IntelliJ](https://www.jetbrains.com/idea/) : For the project that use Scala,
-I recommend using IntelliJ with Scala plug-in.
-* [PyCharm](https://www.jetbrains.com/pycharm/) : Python IDE.
+Effectively using an IDE for development is an important skill you need.
+When you are working on this project, I highly recommend you to use IDE. 
+My favorites are those offered by [JetBrains](https://www.jetbrains.com/) 
+(e.g., [IntelliJ](https://www.jetbrains.com/idea/) for Scala and Java, [PyCharm](https://www.jetbrains.com/pycharm/) for Python).
+They also have [student license](https://www.jetbrains.com/student/) which gives
+a free access to a set of their products.
 
 ### PostgreSQL, PostGIS, and pgRouting
-We use PostgreSQL for persistent data storage of user data and GIS data. We choose
-PostgreSQL over MySQL primarily because of its geographical data support. To install,
-follow the instructions on the following pages.
+We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
+PostgreSQL over other databases (e.g., MySQL) primarily because of its geographical data support. 
+You can either install Postgres and plug-ins them on top of a virtual machine (recommended; easier to install) or 
+directly into your computer.
+
+If you installing them using a virtual machine, see [Virtual Box and Vagrant](### Virtual Box and Vagrant (Optional)). 
+
+I you are installing Postgres directly into your computer, see the following pages:
 
 * Windows:
   * [PostGIS](http://postgis.net/windows_downloads) : PostGIS's official web page. Follow the instruction to install PostgreSQL as well as PostGIS (> 2.0.0).
 * OS X:
   * [Kyng Chaos](http://www.kyngchaos.com/software/postgres) : Kyng Chao offers a PostgreSQL 9.4 binary for OS X that include PostgreSQL, PostGIS, and pgRouting. This would be the easiest way to go for the OS X user. Once installed, start the database with the following command. `/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data/`. To start the postgres, run `/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data/`
 
+### JDK
+Part of the project use Scala and Java, so you should install 
+[Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html). 
+JDK 8 is backward compatible and our code should work on it.
+
+### Virtual Box and Vagrant (Optional)
+Start by installing virtualbox (www.virtualbox.org/wiki/Downloads) and vagrant (www.vagrantup.com). 
+Windows users should also install an SSH client as well (or the chance is you already have it if you are using git. 
+Add `C:\Program Files (x86)\Git\bin` to the PATH. 
+See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
+and [here](https://gist.github.com/haf/2843680) for more information.)
+Spend some time setting up and familiarizing yourself with vagrant. Afterwards, in the access-route directory run:
+
+```
+vagrant up
+```
+
+This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while. When it completes, you can log into a terminal of your new virtual machine by using:
+
+```
+vagrant ssh
+```
+
+You can find the access-route project in the /vagrant directory. To start the app run:
+
+```
+cd /vagrant/routing
+python manage.py runserver 0.0.0.0:8000
+```
+
+Then go to http://localhost:8000 on your laptop to see the website!
+
+You can also access the PostgreSQL database running inside of vagrant. For example, on osx you can use an app like Postico to connect to the PostgreSQL database using the credentials:
+
+```
+Host: localhost:15432
+User: vagrant
+Password: sidewalk
+Database: sidewalk
+```
+
+When you are done working be sure the suspend (or halt/destroy) your vagrant virtual machine:
+```
+vagrant suspend
+```
+
+When you are ready to start working again just use:
+```
+vagrant up
+vagrant ssh
+```
+
 ## Utilities
 This section introduces various tools that may become handy while working on
 the projects.
 
 ### PostgreSQL Clients
-It's probably not a good idea to interact with database using command line tool.
+Database client programs make it easier to interact with tables.
 The following PostgreSQL clients provides GUI to view and manipulate the database.
-* [Postico](https://eggerapps.at/postico/): A free PostgreSQL UI. I would use this if I'm on OS X machine.
+* [Postico](https://eggerapps.at/postico/): A free Postgres client for OS X.
+* [Valentina Studio](https://www.valentina-db.com/en/valentina-studio-overview): A cross-platform database client.
 
 ### GIS Data Viewer
 When you are working with GIS dataset, you have to visualize it at many stages of your research & development cycle (e.g., debugging, analysis). Following tools are what I have found handy
@@ -42,13 +97,14 @@ while working with GIS dataset.
 * [QGIS](http://www.qgis.org/en/site/) : A comprehensive open source GIS tool. I recommend to install [OpenLayers plug-in](https://plugins.qgis.org/plugins/openlayers_plugin/) and [Quick OSM](https://plugins.qgis.org/plugins/QuickOSM/).
 * [geojson.io](http://workshops.boundlessgeo.com/postgis-intro/) : A browser based geojson data viewer.
 
-### GSI Data Manipulation
+### GIS Data Manipulation
 * [ogr2ogr](http://www.gdal.org/ogr2ogr.html) : ogr2ogr allows you to convert different file formats
 * [osm2pgrouting](http://pgrouting.org/docs/tools/osm2pgrouting.html) : The application allows you to convert data from the OSM format into the pgRouting format and populate a database. If you are on OS X, you can install it via homebrew (`brew install osm2pgrouting`).
 * [pgShapeloader](http://suite.opengeo.org/4.1/dataadmin/pgGettingStarted/pgshapeloader.html): The tool allows you to load a shapefile into PostgreSQL.
 
 ## Dataset
 GIS dataset.
+
 ### Washington DC
 1. Download OSM file using wget: http://workshop.pgrouting.org/chapters/installation.html (Use the following bounding box parameter for downloading the Washington DC dataset: -76.9,39.0,-77.1,38.8)
 Or simply download the data from http://download.bbbike.org/osm/bbbike/WashingtonDC/
@@ -71,8 +127,7 @@ This is based on [this stackoverflow post](http://stackoverflow.com/questions/19
 * [Introduction to PostGIS](http://workshops.boundlessgeo.com/postgis-intro/) : A comprehensive tutorial for using PostGIS.
 
 ### Git and GitHub
-As you can see, we use Git and GitHub for version controll and collaboration.
-See below for the list of concepts you should know:
+As you can see, we use Git and GitHub for version control and collaboration. See below for the list of concepts you should know:
 
 * Branching:
   1. Create a branch to work on your task. You can create a branch by "git checkout -b <branch-name>"
