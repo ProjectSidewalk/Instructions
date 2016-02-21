@@ -35,7 +35,7 @@ Part of the project use Scala and Java, so you should install
 JDK 8 is backward compatible and our code should work on it.
 
 ### Virtual Box and Vagrant (Optional)
-Start by installing virtualbox (www.virtualbox.org/wiki/Downloads) and vagrant (www.vagrantup.com). 
+Start by installing VirtualBox (www.virtualbox.org/wiki/Downloads) and Vagrant (www.vagrantup.com). 
 Windows users should also install an SSH client as well (or the chance is you already have it if you are using git. 
 Add `C:\Program Files (x86)\Git\bin` to the PATH. 
 See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
@@ -48,23 +48,11 @@ vagrant up
 
 This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while. When it completes, you can log into a terminal of your new virtual machine by using:
 
-```
-vagrant ssh
-```
-
-You can find the access-route project in the /vagrant directory. To start the app run:
+You can also access the Postgres database running inside of vagrant. For example, on osx you can use an app like 
+Postico to connect to the PostgreSQL database using the credentials:
 
 ```
-cd /vagrant/routing
-python manage.py runserver 0.0.0.0:8000
-```
-
-Then go to http://localhost:8000 on your laptop to see the website!
-
-You can also access the PostgreSQL database running inside of vagrant. For example, on osx you can use an app like Postico to connect to the PostgreSQL database using the credentials:
-
-```
-Host: localhost:15432
+Host: localhost:5432
 User: vagrant
 Password: sidewalk
 Database: sidewalk
