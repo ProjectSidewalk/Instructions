@@ -8,19 +8,19 @@ how to install softwares and libraries that the multiple projects rely on
 
 ### IDE
 Effectively using an IDE for development is an important skill you need.
-When you are working on this project, I highly recommend you to use IDE. 
-My favorites are those offered by [JetBrains](https://www.jetbrains.com/) 
+When you are working on this project, I highly recommend you to use IDE.
+My favorites are those offered by [JetBrains](https://www.jetbrains.com/)
 (e.g., [IntelliJ](https://www.jetbrains.com/idea/) for Scala and Java, [PyCharm](https://www.jetbrains.com/pycharm/) for Python).
 They also have [student license](https://www.jetbrains.com/student/) which gives
 a free access to a set of their products.
 
 ### PostgreSQL, PostGIS, and pgRouting
 We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
-PostgreSQL over other databases (e.g., MySQL) primarily because of its geographical data support. 
-You can either install Postgres and plug-ins them on top of a virtual machine (recommended; easier to install) or 
+PostgreSQL over other databases (e.g., MySQL) primarily because of its geographical data support.
+You can either install Postgres and plug-ins them on top of a virtual machine (recommended; easier to install) or
 directly into your computer.
 
-If you installing them using a virtual machine, see [Virtual Box and Vagrant](### Virtual Box and Vagrant (Optional)). 
+If you installing them using a virtual machine, see [Virtual Box and Vagrant](### Virtual Box and Vagrant (Optional)).
 
 I you are installing Postgres directly into your computer, see the following pages:
 
@@ -30,14 +30,14 @@ I you are installing Postgres directly into your computer, see the following pag
   * [Kyng Chaos](http://www.kyngchaos.com/software/postgres) : Kyng Chao offers a PostgreSQL 9.4 binary for OS X that include PostgreSQL, PostGIS, and pgRouting. This would be the easiest way to go for the OS X user. Once installed, start the database with the following command. `/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data/`. To start the postgres, run `/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data/`
 
 ### JDK
-Part of the project use Scala and Java, so you should install 
-[Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html). 
+Part of the project use Scala and Java, so you should install
+[Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
 JDK 8 is backward compatible and our code should work on it.
 
 ### Virtual Box and Vagrant (Optional)
-Start by installing VirtualBox (www.virtualbox.org/wiki/Downloads) and Vagrant (www.vagrantup.com). 
-Windows users should also install an SSH client as well (or the chance is you already have it if you are using git. 
-Add `C:\Program Files (x86)\Git\bin` to the PATH. 
+Start by installing VirtualBox (www.virtualbox.org/wiki/Downloads) and Vagrant (www.vagrantup.com).
+Windows users should also install an SSH client as well (or the chance is you already have it if you are using git.
+Add `C:\Program Files (x86)\Git\bin` to the PATH.
 See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
 and [here](https://gist.github.com/haf/2843680) for more information.)
 Spend some time setting up and familiarizing yourself with vagrant. Afterwards, in the access-route directory run:
@@ -48,14 +48,27 @@ vagrant up
 
 This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while. When it completes, you can log into a terminal of your new virtual machine by using:
 
-You can also access the Postgres database running inside of vagrant. For example, on osx you can use an app like 
+You can also access the Postgres database running inside of vagrant. For example, on osx you can use an app like
 Postico to connect to the PostgreSQL database using the credentials:
 
 ```
 Host: localhost:5432
-User: vagrant
+User: sidewalk
 Password: sidewalk
 Database: sidewalk
+```
+
+If you cannot login, check if the user name exists by running the following:
+
+```
+psql -d sidewalk
+\du
+```
+
+To import data, you should run the following command (you may need to run it as sudo. Run: `sudo su - postgres`):
+
+```
+psql -d sidewalk -a -f sidewalk.sql
 ```
 
 When you are done working be sure the suspend (or halt/destroy) your vagrant virtual machine:
