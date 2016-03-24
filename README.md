@@ -20,7 +20,7 @@ PostgreSQL over other databases (e.g., MySQL) primarily because of its geographi
 You can either install Postgres and plug-ins them on top of a virtual machine (recommended; easier to install) or
 directly into your computer.
 
-If you installing them using a virtual machine, see [Virtual Box and Vagrant](### Virtual Box and Vagrant (Optional)).
+**(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](### Virtual Box and Vagrant (Optional)).**
 
 I you are installing Postgres directly into your computer, see the following pages:
 
