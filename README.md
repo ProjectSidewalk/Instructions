@@ -29,6 +29,8 @@ I you are installing Postgres directly into your computer, see the following pag
 * OS X:
   * [Kyng Chaos](http://www.kyngchaos.com/software/postgres) : Kyng Chao offers a PostgreSQL 9.4 binary for OS X that include PostgreSQL, PostGIS, and pgRouting. This would be the easiest way to go for the OS X user. Once installed, start the database with the following command. `/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data/`. To start the postgres, run `/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data/`
 
+Once you got this set up, send an email to Kotaro (kotaro@cs.umd.edu) so he can send you the data to be dumped into the database.
+
 ### JDK
 Part of the project use Scala and Java, so you should install
 [Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
