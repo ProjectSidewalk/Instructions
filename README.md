@@ -6,13 +6,16 @@ how to install softwares and libraries that the multiple projects rely on
 
 ## Getting Started
 
-### Python
-Some parts of the project use Python. I recommend installing [Anaconda](https://www.continuum.io/downloads), a Python distribution with all the scientific packages (e.g., numpy) bundled by default.
-
 ### Java & Scala
-Some parts of the project use Scala and Java, so you should install
+Install
 [Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
 JDK 8 is backward compatible and our code should work on it too. To build a Scala project, you should also install [`sbt`](http://www.scala-sbt.org/) or [`activator`](https://www.lightbend.com/activator/download).
+
+### JavaScript
+Install [`npm`](https://www.npmjs.com/), a package manager for JavaScript. Then install [`Grunt`](http://gruntjs.com/getting-started), a task runner for JavaScript.
+
+### Python
+Install Python. I recommend installing [Anaconda](https://www.continuum.io/downloads), a Python distribution with all the scientific packages (e.g., numpy) bundled by default.
 
 ### PostgreSQL
 We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
@@ -31,7 +34,6 @@ directly into your computer.
 Once you got the database set up, send an email to Kotaro (kotaro@cs.umd.edu) so he can send you the data to be dumped into the database.
 
 #### Accessing the Database
-
 Whether you are accessing the database on your local machine or on the virtual machine, you can also access you can access it by the either command line tool or a Postgres client (e.g., Postico) using the following credential information:
 
 ```
