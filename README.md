@@ -62,7 +62,7 @@ Windows users should also install an SSH client as well (or the chance is you al
 Add `C:\Program Files (x86)\Git\bin` to the PATH.
 See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
 and [here](https://gist.github.com/haf/2843680) for more information.)
-Spend some time setting up and familiarizing yourself with vagrant. Afterwards, in the access-route directory run:
+Spend some time setting up and familiarizing yourself with vagrant. To run Vagrant, type the following command in the directory where the `Vagrantfile` is located:
 
 ```
 vagrant up
