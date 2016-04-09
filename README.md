@@ -46,12 +46,14 @@ psql -d sidewalk
 ```
 
 ### 1.3 Importing the data
-Once you got the database set up, send an email to Kotaro (`kotaro@cs.umd.edu`) so he can send you the data to be imported into the database.
+Once you got the database set up, send an email to Kotaro (`kotaro@cs.umd.edu`) so he can send you the data to be imported into the database (`sidewalk.sql`). Once you get the data, put it under the direcotry `resources`.
 
 To import data, you should run the following command (you may need to run it as a super user. Run: `sudo su - postgres`):
 
 ```
-psql -d sidewalk -a -f sidewalk.sql
+$ vagrant ssh
+vagrant@vagrant-ubuntu-trusty-64:~$ cd /vagrant/resources
+vagrant@vagrant-ubuntu-trusty-64:~$ psql -d sidewalk -a -f sidewalk.sql
 ```
 
 ### 1.4 Browsing the data
