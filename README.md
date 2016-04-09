@@ -1,27 +1,14 @@
 # Project Sidewalk - Instructions
 This repository contains instructions for you to get started contributing to
-projects under Project Sidewalk. For example, it contains instructions on
-how to install softwares and libraries that the multiple projects rely on
-(e.g., PostgreSQL, PostGIS).
+projects under Project Sidewalk. For example, it contains instructions for installing PostgreSQL database server.
 
-### Java & Scala
-Install
-[Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
-JDK 8 is backward compatible and our code should work on it too. To build a Scala project, you should also install [`sbt`](http://www.scala-sbt.org/) or [`activator`](https://www.lightbend.com/activator/download).
-
-### JavaScript
-Install [`npm`](https://www.npmjs.com/), a package manager for JavaScript. Then install [`Grunt`](http://gruntjs.com/getting-started), a task runner for JavaScript.
-
-### Python
-Install Python. I recommend installing [Anaconda](https://www.continuum.io/downloads), a Python distribution with all the scientific packages (e.g., numpy) bundled by default.
-
-### PostgreSQL
+## PostgreSQL
 We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
 PostgreSQL over other databases (e.g., MySQL) primarily because of its geographical data support.
 You can either install Postgres and plug-ins them on top of a virtual machine (recommended; easier to install) or
 directly into your computer.
 
-#### Installation
+### 1.1 Installation
 * **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](##### Virtual Box and Vagrant (Optional)).**
 * I you are installing Postgres directly into your computer, see the following pages:
   * Windows:
@@ -29,7 +16,7 @@ directly into your computer.
   * OS X:
     * [Kyng Chaos](http://www.kyngchaos.com/software/postgres) : Kyng Chao offers a PostgreSQL 9.4 binary for OS X that include PostgreSQL, PostGIS, and pgRouting. This would be the easiest way to go for the OS X user. Once installed, start the database with the following command. `/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data/`. To start the postgres, run `/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data/`
 
-##### Virtual Box and Vagrant (Optional)
+#### 1.1.1 Virtual Box and Vagrant (Optional)
 
 1. Start by installing VirtualBox (www.virtualbox.org/wiki/Downloads) and Vagrant (www.vagrantup.com).
 Windows users should also install an SSH client as well (or the chance is you already have it if you are using git.
@@ -45,7 +32,7 @@ vagrant resume
 vagrant ssh
 ```
 
-#### Accessing the Database
+### 1.2 Accessing the Database
 Once you install Postgres using Vagrant, you should be able to access it at port 5432. Test if your database is up and running. Run the following commands on the directory where you have the Vagrant file:
 ```
 $ vagrant ssh
@@ -58,7 +45,7 @@ psql -d sidewalk
 \du
 ```
 
-#### Importing the data
+### 1.3 Importing the data
 Once you got the database set up, send an email to Kotaro (`kotaro@cs.umd.edu`) so he can send you the data to be imported into the database.
 
 To import data, you should run the following command (you may need to run it as a super user. Run: `sudo su - postgres`):
@@ -67,7 +54,7 @@ To import data, you should run the following command (you may need to run it as 
 psql -d sidewalk -a -f sidewalk.sql
 ```
 
-#### Browsing the data
+### 1.4 Browsing the data
 Once you import the data, you should be able to access it via command line or a database client. Download one of the Postgres clients listed below (e.g., Postico), and access the database using the following credential information:
 
 ```
@@ -77,7 +64,22 @@ Password: sidewalk
 Database: sidewalk
 ```
 
-## Development Environment
+## Java & Scala
+Follow this set-up instruction to contribute to the projects that use Java or Scala.
+
+1. Install
+[Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
+JDK 8 is backward compatible and our code should work on it too.
+2. Install [`activator`](https://www.lightbend.com/activator/download) (or [`sbt`](http://www.scala-sbt.org/)).
+
+## JavaScript
+1. Install [`npm`](https://www.npmjs.com/), a package manager for JavaScript.
+2. Install [`Grunt`](http://gruntjs.com/getting-started), a task runner for JavaScript.
+
+## Python
+Install Python. I recommend installing [Anaconda](https://www.continuum.io/downloads), a Python distribution with all the scientific packages (*e.g.,* numpy) bundled by default.
+
+## Programming Environment
 
 ### IDE
 Effectively using an IDE for development is an important skill you need.
