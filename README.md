@@ -81,7 +81,7 @@ vagrant suspend
 
 When you are ready to start working again just use:
 ```
-vagrant up
+vagrant resume
 vagrant ssh
 ```
 
@@ -98,11 +98,11 @@ a free access to a set of their products.
 #### Hint: Debugging Play applications on IntelliJ
 This is based on [this stackoverflow post](http://stackoverflow.com/questions/19473941/how-to-debug-play-application-using-activator).
 
-1. In a terminal, go to the root directory of your Play project. Then run: `activator -jvm-debug 9999`
+1. In a terminal, go to the root directory of your Play project. Then run: `activator -jvm-debug 9998`
 2. Start the play application by entering `run` in the activator console.
 3. Set up IntelliJ's debug setting. Go to Run > Edit Configureations...
 4. Add a new configuration; click "+" and select "Remote".
-5. Choose Transport: Socket, Debugger mode: Attach, Host: localhost, Port: 9999, and select the appropriate module's classpath. Click "Ok."
+5. Choose Transport: Socket, Debugger mode: Attach, Host: localhost, Port: 9998, and select the appropriate module's classpath. Click "Ok."
 6. Run a debugger and set break points. Then you should be good to go!
 
 ### Git and GitHub
