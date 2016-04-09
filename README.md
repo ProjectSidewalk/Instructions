@@ -1,10 +1,8 @@
 # Project Sidewalk - Instructions
-This repository contains onboarding instructions for start contributing to
+This repository contains instructions for you to get started contributing to
 projects under Project Sidewalk. For example, it contains instructions on
 how to install softwares and libraries that the multiple projects rely on
 (e.g., PostgreSQL, PostGIS).
-
-## Getting Started
 
 ### Java & Scala
 Install
@@ -24,65 +22,59 @@ You can either install Postgres and plug-ins them on top of a virtual machine (r
 directly into your computer.
 
 #### Installation
-* **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](### Virtual Box and Vagrant (Optional)).**
+* **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](##### Virtual Box and Vagrant (Optional)).**
 * I you are installing Postgres directly into your computer, see the following pages:
   * Windows:
     * [PostGIS](http://postgis.net/windows_downloads) : PostGIS's official web page. Follow the instruction to install PostgreSQL as well as PostGIS (> 2.0.0).
   * OS X:
     * [Kyng Chaos](http://www.kyngchaos.com/software/postgres) : Kyng Chao offers a PostgreSQL 9.4 binary for OS X that include PostgreSQL, PostGIS, and pgRouting. This would be the easiest way to go for the OS X user. Once installed, start the database with the following command. `/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data/`. To start the postgres, run `/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data/`
 
-Once you got the database set up, send an email to Kotaro (kotaro@cs.umd.edu) so he can send you the data to be dumped into the database.
+##### Virtual Box and Vagrant (Optional)
+
+1. Start by installing VirtualBox (www.virtualbox.org/wiki/Downloads) and Vagrant (www.vagrantup.com).
+Windows users should also install an SSH client as well (or the chance is you already have it if you are using git.
+Add `C:\Program Files (x86)\Git\bin` to the PATH.
+See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
+and [here](https://gist.github.com/haf/2843680) for more information.)
+2. Check out this repo by typing `git clone https://github.com/ProjectSidewalk/Instructions.git`
+3. Type the following command in the directory where the `Vagrantfile` is located: `vagrant up`. This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while.
+4. When the set up completes, you should be able to log into the virtual machine you've just installed by typing: `vagrant ssh`.
+5. When you are done working, stop the virtual machine by running `vagrant suspend`. When you want to restart working again, use:
+```
+vagrant resume
+vagrant ssh
+```
 
 #### Accessing the Database
-Whether you are accessing the database on your local machine or on the virtual machine, you can also access you can access it by the either command line tool or a Postgres client (e.g., Postico) using the following credential information:
+Once you install Postgres using Vagrant, you should be able to access it at port 5432. Test if your database is up and running. Run the following commands on the directory where you have the Vagrant file:
+```
+$ vagrant ssh
+vagrant@vagrant-ubuntu-trusty-64:~$ psql -d sidewalk
+```
+
+Check if the user name `sidewalk` exists on the database:
+```
+psql -d sidewalk
+\du
+```
+
+#### Importing the data
+Once you got the database set up, send an email to Kotaro (`kotaro@cs.umd.edu`) so he can send you the data to be imported into the database.
+
+To import data, you should run the following command (you may need to run it as a super user. Run: `sudo su - postgres`):
+
+```
+psql -d sidewalk -a -f sidewalk.sql
+```
+
+#### Browsing the data
+Once you import the data, you should be able to access it via command line or a database client. Download one of the Postgres clients listed below (e.g., Postico), and access the database using the following credential information:
 
 ```
 Host: localhost:5432
 User: sidewalk
 Password: sidewalk
 Database: sidewalk
-```
-
-If you cannot login, check if the user name exists by running the following:
-
-```
-psql -d sidewalk
-\du
-```
-
-To import data, you should run the following command (you may need to run it as sudo. Run: `sudo su - postgres`):
-
-```
-psql -d sidewalk -a -f sidewalk.sql
-```
-
-### Virtual Box and Vagrant (Optional)
-Start by installing VirtualBox (www.virtualbox.org/wiki/Downloads) and Vagrant (www.vagrantup.com).
-Windows users should also install an SSH client as well (or the chance is you already have it if you are using git.
-Add `C:\Program Files (x86)\Git\bin` to the PATH.
-See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
-and [here](https://gist.github.com/haf/2843680) for more information.)
-Spend some time setting up and familiarizing yourself with vagrant. To run Vagrant, type the following command in the directory where the `Vagrantfile` is located:
-
-```
-vagrant up
-```
-
-This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while. When it completes, you can log into a terminal of your new virtual machine by using:
-
-```
-vagrant ssh
-```
-
-When you are done working be sure the suspend (or halt/destroy) your vagrant virtual machine:
-```
-vagrant suspend
-```
-
-When you are ready to start working again just use:
-```
-vagrant resume
-vagrant ssh
 ```
 
 ## Development Environment
