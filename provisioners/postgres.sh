@@ -91,20 +91,21 @@ cat << EOF | su - postgres -c psql
 CREATE USER $APP_DB_USER WITH PASSWORD '$APP_DB_PASS';
 GRANT ALL PRIVILEGES ON DATABASE $APP_DB_NAME to $APP_DB_USER;  # TODO: Do we need this if we are superuser?
 
-CREATE ROLE sidewalk LOGIN;
-ALTER USER sidewalk WITH PASSWORD 'sidewalk';
-ALTER USER sidewalk SUPERUSER;
-GRANT ALL PRIVILEGES ON DATABASE $APP_DB_NAME to sidewalk;
-GRANT ALL ON ALL TABLES IN SCHEMA sidewalk to sidewalk;
-ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON TABLES TO sidewalk;
-ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON SEQUENCES TO sidewalk;
-
 -- Create the database:
 CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
                                   LC_COLLATE='en_US.utf8'
                                   LC_CTYPE='en_US.utf8'
                                   ENCODING='UTF8'
                                   TEMPLATE=template0;
+
+CREATE ROLE sidewalk LOGIN;
+ALTER USER sidewalk WITH PASSWORD 'sidewalk';
+ALTER USER sidewalk SUPERUSER;
+GRANT ALL PRIVILEGES ON DATABASE sidewalk TO sidewalk;
+GRANT ALL ON ALL TABLES IN SCHEMA sidewalk TO sidewalk;                                  
+ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON TABLES TO sidewalk;
+ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON SEQUENCES TO sidewalk;
+
 EOF
 
 # Tag the provision time:

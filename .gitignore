@@ -45,5 +45,5 @@ crashlytics-build.properties
 fabric.properties
 
 provisioners/*.sql
-resources/*
+resources/*.sql
 .vagrant
