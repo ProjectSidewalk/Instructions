@@ -98,11 +98,13 @@ CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
                                   ENCODING='UTF8'
                                   TEMPLATE=template0;
 
+
+-- Create the user 'sidewalk'
 CREATE ROLE sidewalk LOGIN;
 ALTER USER sidewalk WITH PASSWORD 'sidewalk';
 ALTER USER sidewalk SUPERUSER;
 GRANT ALL PRIVILEGES ON DATABASE sidewalk TO sidewalk;
-GRANT ALL ON ALL TABLES IN SCHEMA sidewalk TO sidewalk;                                  
+GRANT ALL ON ALL TABLES IN SCHEMA sidewalk TO sidewalk;
 ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON TABLES TO sidewalk;
 ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON SEQUENCES TO sidewalk;
 
