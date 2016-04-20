@@ -127,6 +127,17 @@ The following PostgreSQL clients provides GUI to view and manipulate the databas
 * [Postico](https://eggerapps.at/postico/): A free Postgres client for OS X.
 * [Valentina Studio](https://www.valentina-db.com/en/valentina-studio-overview): A cross-platform database client.
 
+### Remote Postgres Connections over SSH Tunnels
+It is possible to use SSH to [connect to the remote database](http://www.postgresql.org/docs/9.2/static/ssh-tunnels.html). For instance,
+this is useful if you have to apply a python script against the data stored in
+the remote database.
+
+```
+ssh -L 63333:localhost:5432 joe@foo.com
+```
+> The first number in the -L argument, 63333, is the port number of your end of the tunnel; it can be any unused port. (IANA reserves ports 49152 through 65535 for private use.) The second number, 5432, is the remote end of the tunnel: the port number your server is using. (From the PostgreSQL web page)
+
+
 ### GIS Data Viewer
 When you are working with GIS dataset, you have to visualize it at many stages of your research & development cycle (e.g., debugging, analysis). Following tools are what I have found handy
 while working with GIS dataset.
