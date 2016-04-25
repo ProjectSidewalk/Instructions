@@ -142,16 +142,17 @@ The web applications that run on the UMIACS server need mechanisms to auto-resta
 
 **Cron & crontab**
 
-1. Write a shell script that runs your application. For instance:
+1. Write a shell script that runs your application (see below)
+2. Make the script executable: `chmod 755 sidewalk_webpage_runner.sh`
+3. Run `crontab -e` or `EDITOR=/usr/bin/emacs crontab -e`
+4. Add the following line: `@reboot /PATH/TO/DIR/sidewalk_webpage_runner.sh` and save the crontab file
+5. Check if the script has been added to the crontab entries by runing: `crontab -l`
+
 ```
 #!/bin/bash
 # Filename: sidewalk_webpage_runner.sh
 nohup sidewalk-webpage/bin/sidewalk-webpage -Dhttp.port=9000 &
 ```
-2. Make the script executable: `chmod 755 sidewalk_webpage_runner.sh`
-3. Run `crontab -e` or `EDITOR=/usr/bin/emacs crontab -e`
-4. Add the following line: `@reboot /PATH/TO/DIR/sidewalk_webpage_runner.sh` and save the crontab file.
-5. Check if the script has been added to the crontab entries by runing: `crontab -l`
 
 ### GIS Data Viewer
 When you are working with GIS dataset, you have to visualize it at many stages of your research & development cycle (e.g., debugging, analysis). Following tools are what I have found handy
