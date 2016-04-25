@@ -141,12 +141,13 @@ ssh -L 63333:localhost:5432 joe@foo.com
 The web applications that run on the UMIACS server need mechanisms to auto-restart as the server shuts down/restart periodically, killing the application processes. Two approaches recommended by the UMIACS staff are (i) [making a crontab entry](https://www.debian-administration.org/article/372/Running_scripts_after_a_reboot_for_non-root_users) and (ii) [adding a service to the systemd service manager.](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sect-Managing_Services_with_systemd-Unit_Files.html)
 
 **Cron & crontab**
+
 1. Write a shell script that runs your application. For instance:
-```
-#!/bin/bash
-# Filename: sidewalk_webpage_runner.sh
-nohup sidewalk-webpage/bin/sidewalk-webpage -Dhttp.port=9000 &
-```
+  ```
+  #!/bin/bash
+  # Filename: sidewalk_webpage_runner.sh
+  nohup sidewalk-webpage/bin/sidewalk-webpage -Dhttp.port=9000 &
+  ```
 2. Make the script executable: `chmod 755 sidewalk_webpage_runner.sh`
 3. Run `crontab -e` or `EDITOR=/usr/bin/emacs crontab -e`
 4. Add the following line: `@reboot /PATH/TO/DIR/sidewalk_webpage_runner.sh` and save the crontab file.
