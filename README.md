@@ -143,11 +143,11 @@ The web applications that run on the UMIACS server need mechanisms to auto-resta
 **Cron & crontab**
 
 1. Write a shell script that runs your application. For instance:
-  ```
-  #!/bin/bash
-  # Filename: sidewalk_webpage_runner.sh
-  nohup sidewalk-webpage/bin/sidewalk-webpage -Dhttp.port=9000 &
-  ```
+```
+#!/bin/bash
+# Filename: sidewalk_webpage_runner.sh
+nohup sidewalk-webpage/bin/sidewalk-webpage -Dhttp.port=9000 &
+```
 2. Make the script executable: `chmod 755 sidewalk_webpage_runner.sh`
 3. Run `crontab -e` or `EDITOR=/usr/bin/emacs crontab -e`
 4. Add the following line: `@reboot /PATH/TO/DIR/sidewalk_webpage_runner.sh` and save the crontab file.
