@@ -71,7 +71,7 @@ To exporting the data in the server, run the following after logging into the se
 
 ```
 scl enable postgresql92 bash
-pg_dump -h <hostname> -U <username> <database> -f dump.sql
+pg_dump -h <hostname> -U <username> --clean <database> -f dump.sql
 ```
 
 The first line will drop you into a subshell with the environment variables setup to point you at the pgsql 9.2 installation instead of the system default. The second line dumps all the data in the database into dump.sql. See more on: http://www.postgresql.org/docs/9.2/static/app-pgdump.html
