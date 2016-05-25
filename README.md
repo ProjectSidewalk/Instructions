@@ -160,7 +160,7 @@ The web applications that run on the UMIACS server need mechanisms to auto-resta
 
 ```
 #!/bin/bash
-# Filename: sidewalk_webpage_runner.sh
+# Filename: sidewalk_runner.sh
 nohup sidewalk-webpage/bin/sidewalk-webpage -Dhttp.port=9000 &
 ```
 
