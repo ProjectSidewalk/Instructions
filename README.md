@@ -85,8 +85,8 @@ JDK 8 is backward compatible and our code should work on it too.
 2. Install [`activator`](https://www.lightbend.com/activator/download) (or [`sbt`](http://www.scala-sbt.org/)).
 
 ## JavaScript
-1. Install [`npm`](https://www.npmjs.com/), a package manager for JavaScript.
-2. Install [`Grunt`](http://gruntjs.com/getting-started), a task runner for JavaScript.
+1. Install [`npm`](https://www.npmjs.com/), a package manager for JavaScript. I think the easiest way for Mac uses is `brew install node`. For Windows users, follow [this guide.](https://docs.npmjs.com/getting-started/installing-node)
+2. (Optional) Install [`Grunt`](http://gruntjs.com/getting-started), a task runner for JavaScript.
 
 ## Python
 Install Python. I recommend installing [Anaconda](https://www.continuum.io/downloads), a Python distribution with all the scientific packages (*e.g.,* numpy) bundled by default.
