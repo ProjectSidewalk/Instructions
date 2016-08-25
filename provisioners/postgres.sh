@@ -15,9 +15,9 @@ POSTGIS_VERSION=2.1
 # Changes below this line are probably not necessary
 ###########################################################
 print_db_usage () {
-  echo "Your PostgreSQL database has been setup and can be accessed on your local machine on the forwarded port (default: 15432)"
+  echo "Your PostgreSQL database has been setup and can be accessed on your local machine on the forwarded port (default: 5432)"
   echo "  Host: localhost"
-  echo "  Port: 15432"
+  echo "  Port: 5432"
   echo "  Database: $APP_DB_NAME"
   echo "  Username: $APP_DB_USER"
   echo "  Password: $APP_DB_PASS"
@@ -32,10 +32,10 @@ print_db_usage () {
   echo "  PGUSER=$APP_DB_USER PGPASSWORD=$APP_DB_PASS psql -h localhost $APP_DB_NAME"
   echo ""
   echo "Env variable for application development:"
-  echo "  DATABASE_URL=postgresql://$APP_DB_USER:$APP_DB_PASS@localhost:15432/$APP_DB_NAME"
+  echo "  DATABASE_URL=postgresql://$APP_DB_USER:$APP_DB_PASS@localhost:5432/$APP_DB_NAME"
   echo ""
   echo "Local command to access the database via psql:"
-  echo "  PGUSER=$APP_DB_USER PGPASSWORD=$APP_DB_PASS psql -h localhost -p 15432 $APP_DB_NAME"
+  echo "  PGUSER=$APP_DB_USER PGPASSWORD=$APP_DB_PASS psql -h localhost -p 5432 $APP_DB_NAME"
 }
 
 export DEBIAN_FRONTEND=noninteractive
@@ -66,9 +66,9 @@ apt-get -y upgrade
 
 # Install Postgres and PostGIS
 apt-get -y install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION"
-apt-get install -y postgis*
-apt-get install -y pgrouting*
-# apt-get install -y postgis "postgresql-$PG_VERSION-postgis-$POSTGIS_VERSION"
+apt-get -y install "postgresql-$PG_VERSION-postgis-$POSTGIS_VERSION"
+# apt-get install -y postgis*
+# apt-get install -y pgrouting*
 
 PG_CONF="/etc/postgresql/$PG_VERSION/main/postgresql.conf"
 PG_HBA="/etc/postgresql/$PG_VERSION/main/pg_hba.conf"
@@ -86,41 +86,10 @@ echo "client_encoding = utf8" >> "$PG_CONF"
 # Restart so that all new config is loaded:
 service postgresql restart
 
-cat << EOF | su - postgres -c psql
--- Create the database user:
-CREATE USER $APP_DB_USER WITH PASSWORD '$APP_DB_PASS';
-GRANT ALL PRIVILEGES ON DATABASE $APP_DB_NAME to $APP_DB_USER;  # TODO: Do we need this if we are superuser?
-
--- Create the database:
-CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
-                                  LC_COLLATE='en_US.utf8'
-                                  LC_CTYPE='en_US.utf8'
-                                  ENCODING='UTF8'
-                                  TEMPLATE=template0;
-
-
--- Create the user 'sidewalk'
-CREATE ROLE sidewalk LOGIN;
-ALTER USER sidewalk WITH PASSWORD 'sidewalk';
-ALTER USER sidewalk SUPERUSER;
-GRANT ALL PRIVILEGES ON DATABASE sidewalk TO sidewalk;
-GRANT ALL ON ALL TABLES IN SCHEMA sidewalk TO sidewalk;
-ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON TABLES TO sidewalk;
-ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON SEQUENCES TO sidewalk;
-
-EOF
-
-# Tag the provision time:
-date > "$PROVISIONED_ON"
-
-echo "Successfully created PostgreSQL dev virtual machine."
-echo ""
-print_db_usage
-
 # Setup pip
 sudo apt-get install
 sudo apt-get install -y postgresql-server-dev-9.3 python-dev python-pip
-sudo pip install -r /vagrant/requirements.txt
+# sudo pip install -r /vagrant/requirements.txt
 
 # Add pgRouting launchpad repository
 sudo add-apt-repository ppa:georepublic/pgrouting
@@ -136,8 +105,44 @@ sudo apt-get install -y gdal-bin
 # sudo apt-get install -y npm
 # sudo npm install -g topojson
 
+cat << EOF | su - postgres -c psql
+-- Create the database user:
+CREATE USER $APP_DB_USER WITH PASSWORD '$APP_DB_PASS';
+
+-- Create the database:
+CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
+                                  LC_COLLATE='en_US.utf8'
+                                  LC_CTYPE='en_US.utf8'
+                                  ENCODING='UTF8'
+                                  TEMPLATE=template0;
+
+-- Give permisssions of the database to the new user:
+GRANT ALL PRIVILEGES ON DATABASE $APP_DB_NAME to $APP_DB_USER; 
+
+-- Create the user 'sidewalk'
+CREATE ROLE sidewalk LOGIN;
+ALTER USER sidewalk WITH PASSWORD 'sidewalk';
+ALTER USER sidewalk SUPERUSER;
+GRANT ALL PRIVILEGES ON DATABASE sidewalk TO sidewalk;
+
+-- Create the schema 'sidewalk'
+CREATE SCHEMA sidewalk;
+GRANT ALL ON ALL TABLES IN SCHEMA sidewalk TO sidewalk;
+ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON TABLES TO sidewalk;
+ALTER DEFAULT PRIVILEGES IN SCHEMA sidewalk GRANT ALL ON SEQUENCES TO sidewalk;
+
+EOF
+
+echo "Successfully created PostgreSQL dev virtual machine."
+echo ""
+print_db_usage
+
+# Tag the provision time:
+date > "$PROVISIONED_ON"
+
 # Following instructions from: https://github.com/tongning/access-route/blob/d49dc6efb6f49af7ed27baf633e9b0815778a4fc/README.md
-sudo su -l postgres -c "createdb sidewalk"
+# Repeated
+# sudo su -l postgres -c "createdb sidewalk"
 
 # Let us be superuser
 sudo su -l postgres -c "psql sidewalk -c 'ALTER USER vagrant WITH SUPERUSER'"
@@ -147,12 +152,16 @@ sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION postgis'"
 sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION postgis_topology'"
 sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION fuzzystrmatch'"
 sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION postgis_tiger_geocoder'"
+
+# DOESN'T WORK
 sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION pgrouting'"
 
 
-# Create requrired tables and import data. Todo. KH should create a sql dump to import. I think it's cleaner to separate all the SQL commands from this shell script.
-ogr2ogr -f "PostgreSQL" PG:"host=localhost dbname=sidewalk user=vagrant password=sidewalk" "/vagrant/simple.geojson" -nln sidewalk_edge -append
-sudo su -l postgres -c "psql sidewalk -c 'CREATE SCHEMA sidewalk'"
+# Create required tables and import data. Todo. KH should create a sql dump to import. I think it's cleaner to separate all the SQL commands from this shell script.
+# ogr2ogr -f "PostgreSQL" PG:"host=localhost dbname=sidewalk user=vagrant password=sidewalk" "/vagrant/simple.geojson" -nln sidewalk_edge -append
+
+
+# DOESN'T WORK
 sudo su -l postgres -c "psql sidewalk -c 'ALTER TABLE sidewalk.sidewalk_edge RENAME COLUMN ogc_fid TO sidewalk_edge_id'"
 
 sudo su -l postgres -c "psql sidewalk -c 'CREATE SEQUENCE feature_types_type_id_seq'"
@@ -256,15 +265,15 @@ sudo su -l postgres -c "psql sidewalk -c '
                     ELSE 0 --If there are only 1 or 2 curbramps, cost is not affected.
                   END AS costcontrib
            FROM   (SELECT Count(*) AS num_curbramps --Count how many curbramps are on this street segment
-                   FROM   (SELECT accessibility_feature.accessibility_feature_id,
+                   FROM   (SELECT sidewalk.accessibility_feature.accessibility_feature_id,
                                   feature_type,
                                   sidewalk_edge_id
-                           FROM   accessibility_feature
-                                  INNER JOIN sidewalk_edge_accessibility_feature
+                           FROM   sidewalk.accessibility_feature
+                                  INNER JOIN sidewalk.sidewalk_edge_accessibility_feature
                                           ON
-                  sidewalk_edge_accessibility_feature.accessibility_feature_id
+                  sidewalk.sidewalk_edge_accessibility_feature.accessibility_feature_id
                   =
-                  accessibility_feature.accessibility_feature_id) AS foo
+                  sidewalk.accessibility_feature.accessibility_feature_id) AS foo
                    WHERE  sidewalk_edge_id = \$1
                           AND feature_type = 1) AS curbramps --feature_type corresponds to the feature_id in fature_types
            UNION
@@ -275,21 +284,21 @@ sudo su -l postgres -c "psql sidewalk -c '
                     ELSE 0
                   END AS costcontrib
            FROM   (SELECT Count(*) AS num_construction --Count the number of construction obstacles on the street segment
-                   FROM   (SELECT accessibility_feature.accessibility_feature_id,
+                   FROM   (SELECT sidewalk.accessibility_feature.accessibility_feature_id,
                                   feature_type,
                                   sidewalk_edge_id
-                           FROM   accessibility_feature
-                                  INNER JOIN sidewalk_edge_accessibility_feature
+                           FROM   sidewalk.accessibility_feature
+                                  INNER JOIN sidewalk.sidewalk_edge_accessibility_feature
                                           ON
-                  sidewalk_edge_accessibility_feature.accessibility_feature_id
+                  sidewalk.sidewalk_edge_accessibility_feature.accessibility_feature_id
                   =
-                  accessibility_feature.accessibility_feature_id) AS foo
+                  sidewalk.accessibility_feature.accessibility_feature_id) AS foo
                    WHERE  sidewalk_edge_id = \$1
                           AND feature_type = 2) AS construction --feature_type corresponds to the feature_id in feature_types
            UNION
            (SELECT St_length(St_transform(wkb_geometry, 3637)), --Finally, add the length of the segment (in meters) to the cost
                    St_length(St_transform(wkb_geometry, 3637)) as costcontrib
-            FROM   sidewalk_edge AS distance_cost
+            FROM   sidewalk.sidewalk_edge AS distance_cost
             WHERE  sidewalk_edge_id = \$1))
   SELECT sum(costcontrib)
   FROM   allcosts; \$BODY\$
@@ -309,6 +318,6 @@ sudo su -l postgres -c "psql sidewalk -c '
 # \"";
 
 # Final setup of the Django app
-cd /vagrant/routing
-python manage.py makemigrations
-python manage.py migrate
+# cd /vagrant/routing
+# python manage.py makemigrations
+# python manage.py migrate
