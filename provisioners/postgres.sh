@@ -140,6 +140,7 @@ print_db_usage
 # Tag the provision time:
 date > "$PROVISIONED_ON"
 
+# --- Instructions below are not essential for setting up the database ---
 # Following instructions from: https://github.com/tongning/access-route/blob/d49dc6efb6f49af7ed27baf633e9b0815778a4fc/README.md
 # Repeated
 # sudo su -l postgres -c "createdb sidewalk"
