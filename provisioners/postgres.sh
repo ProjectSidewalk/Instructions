@@ -155,4 +155,4 @@ sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION fuzzystrmatch'"
 sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION postgis_tiger_geocoder'"
 
 # DOESN'T WORK
-sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION pgrouting'"
+# sudo su -l postgres -c "psql sidewalk -c 'CREATE EXTENSION pgrouting'"
