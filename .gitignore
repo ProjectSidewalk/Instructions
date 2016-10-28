@@ -46,4 +46,5 @@ fabric.properties
 
 provisioners/*.sql
 resources/*.sql
+resources/*.mssql
 .vagrant
