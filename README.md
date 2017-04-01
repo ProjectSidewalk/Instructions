@@ -9,7 +9,7 @@ You can either install Postgres and plug-ins them on top of a virtual machine (r
 directly into your computer.
 
 ### 1.1 Installation
-* **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](##### Virtual Box and Vagrant (Optional)).**
+* **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](https://github.com/ProjectSidewalk/Instructions/blob/master/README.md#111-virtual-box-and-vagrant-optional) below.**
 * I you are installing Postgres directly into your computer, see the following pages:
   * Windows:
     * [PostGIS](http://postgis.net/windows_downloads) : PostGIS's official web page. Follow the instruction to install PostgreSQL as well as PostGIS (> 2.0.0).
