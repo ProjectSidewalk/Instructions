@@ -10,7 +10,7 @@ directly into your computer.
 
 ### 1.1 Installation
 * **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](https://github.com/ProjectSidewalk/Instructions/blob/master/README.md#111-virtual-box-and-vagrant-optional) below.**
-* I you are installing Postgres directly into your computer, see the following pages:
+* If you are installing Postgres directly into your computer, see the following pages:
   * Windows:
     * [PostGIS](http://postgis.net/windows_downloads) : PostGIS's official web page. Follow the instruction to install PostgreSQL as well as PostGIS (> 2.0.0).
   * OS X:
@@ -23,7 +23,7 @@ Windows users should also install an SSH client as well (or the chance is you al
 Add `C:\Program Files (x86)\Git\bin` to the PATH.
 See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
 and [here](https://gist.github.com/haf/2843680) for more information.)
-2. Check out this repo by typing `git clone https://github.com/ProjectSidewalk/Instructions.git`
+2. Check out this repo (on your local machine) by typing `git clone https://github.com/ProjectSidewalk/Instructions.git`
 3. Type the following command in the directory where the `Vagrantfile` is located: `vagrant up`. This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while.
 4. When the set up completes, you should be able to log into the virtual machine you've just installed by typing: `vagrant ssh`.
 5. When you are done working, stop the virtual machine by running `vagrant suspend`. When you want to restart working again, use:
