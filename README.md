@@ -24,7 +24,7 @@ Add `C:\Program Files (x86)\Git\bin` to the PATH.
 See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-in-any-directories-in-the-path)
 and [here](https://gist.github.com/haf/2843680) for more information.)
 2. Check out this repo (on your local machine) by typing `git clone https://github.com/ProjectSidewalk/Instructions.git`
-3. Type the following command in the directory where the `Vagrantfile` is located: `vagrant up`. This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while.
+3. To get to the Instructions folder, navigate directories using command line commands (e.g. cd). Type the following command in the directory (Instructions) where the `Vagrantfile` is located: `vagrant up`.  This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while.
 4. When the set up completes, you should be able to log into the virtual machine you've just installed by typing: `vagrant ssh`.
 5. When you are done working, stop the virtual machine by running `vagrant suspend`. When you want to restart working again, use:
 ```
@@ -46,7 +46,7 @@ psql -d sidewalk
 ```
 
 ### 1.3 Importing the data
-Once you got the database set up, send an email to Manaswi Saha (`manaswi@cs.umd.edu`) so she can send you the data to be imported into the database (`sidewalk.sql`). Once you get the data, put it under the directory `resources`.
+Once you got the database set up, send an email to Manaswi Saha (`manaswi@cs.umd.edu`) so she can send you the data to be imported into the database (`sidewalk.sql`). If the SQL file name is different, rename it to `sidewalk.sql`. Once you get the data, put it under the directory `resources`, which you should create in the Instructions folder.
 
 To import data, you should run the following command (you may need to run it as a super user. Run: `sudo su - postgres`):
 
@@ -64,6 +64,17 @@ Host: localhost:5432
 User: sidewalk
 Password: sidewalk
 Database: sidewalk
+```
+
+Windows users who download pgAdmin 3 can access the database by opting to "Add a new server" and filling the form with the following information:
+
+```
+Name: server_name_of_your_choice
+Host/Host Address: localhost
+Port: 5432
+Maintenance DB: postgres
+Username: sidewalk
+Password: sidewalk
 ```
 
 ### 1.5 Exporting the data
@@ -99,7 +110,7 @@ When you are working on this project, I highly recommend you to use IDE.
 My favorites are those offered by [JetBrains](https://www.jetbrains.com/)
 (e.g., [IntelliJ](https://www.jetbrains.com/idea/) for Scala and Java, [PyCharm](https://www.jetbrains.com/pycharm/) for Python).
 They also have [student license](https://www.jetbrains.com/student/) which gives
-a free access to a set of their products.
+a free access to a set of their products. For those of you familiar with the Eclipse IDE, you can opt to work with Scala in Eclipse by following this [tutorial](http://www.topjavatutorial.com/scala/scala-development-with-eclipse/)'s instructions.
 
 #### Hint: Debugging Play applications on IntelliJ
 This is based on [this stackoverflow post](http://stackoverflow.com/questions/19473941/how-to-debug-play-application-using-activator).
@@ -136,6 +147,8 @@ Database client programs make it easier to interact with tables.
 The following PostgreSQL clients provides GUI to view and manipulate the database.
 * [Postico](https://eggerapps.at/postico/): A free Postgres client for OS X.
 * [Valentina Studio](https://www.valentina-db.com/en/valentina-studio-overview): A cross-platform database client.
+* [pgAdmin 3](https://www.pgadmin.org/download/): A PostGreSQL client for both Windows and macOS.
+
 
 ### Remote Postgres Connections over SSH Tunnels
 It is possible to use SSH to [connect to the remote database](http://www.postgresql.org/docs/9.2/static/ssh-tunnels.html). For instance,
