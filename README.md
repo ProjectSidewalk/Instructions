@@ -197,3 +197,7 @@ while working with GIS dataset.
 1. Download OSM file using wget: http://workshop.pgrouting.org/chapters/installation.html (Use the following bounding box parameter for downloading the Washington DC dataset: -76.9,39.0,-77.1,38.8)
 Or simply download the data from http://download.bbbike.org/osm/bbbike/WashingtonDC/
 2. Follow the steps to import the OSM data into the PostGIS-enabled database (or use a python script with Imposm ) http://workshop.pgrouting.org/chapters/osm2pgrouting.html
+
+### Next Steps
+Set up the development environment by reading the README file instructions on the SideWalk webpage github.
+
