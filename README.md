@@ -110,7 +110,7 @@ When you are working on this project, I highly recommend you to use IDE.
 My favorites are those offered by [JetBrains](https://www.jetbrains.com/)
 (e.g., [IntelliJ](https://www.jetbrains.com/idea/) for Scala and Java, [PyCharm](https://www.jetbrains.com/pycharm/) for Python).
 They also have [student license](https://www.jetbrains.com/student/) which gives
-a free access to a set of their products. For those of you familiar with the Eclipse IDE, you can opt to work with Scala in Eclipse by following this [tutorial](http://www.topjavatutorial.com/scala/scala-development-with-eclipse/)'s instructions.
+a free access to a set of their products.
 
 #### Hint: Debugging Play applications on IntelliJ
 This is based on [this stackoverflow post](http://stackoverflow.com/questions/19473941/how-to-debug-play-application-using-activator).
@@ -199,5 +199,5 @@ Or simply download the data from http://download.bbbike.org/osm/bbbike/Washingto
 2. Follow the steps to import the OSM data into the PostGIS-enabled database (or use a python script with Imposm ) http://workshop.pgrouting.org/chapters/osm2pgrouting.html
 
 ### Next Steps
-Set up the development environment by reading the README file instructions on the SideWalk webpage github.
+Set up the development environment by reading the [README](https://github.com/ProjectSidewalk/SidewalkWebpage) file instructions on the SideWalk webpage github.
 
