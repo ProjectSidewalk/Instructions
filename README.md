@@ -199,5 +199,5 @@ Or simply download the data from http://download.bbbike.org/osm/bbbike/Washingto
 2. Follow the steps to import the OSM data into the PostGIS-enabled database (or use a python script with Imposm ) http://workshop.pgrouting.org/chapters/osm2pgrouting.html
 
 ### Next Steps
-Set up the development environment by reading the [README](https://github.com/ProjectSidewalk/SidewalkWebpage) file instructions on the SideWalk webpage github.
+Finish up setting up the development environment by going back to the instructions on the [README](https://github.com/ProjectSidewalk/SidewalkWebpage) file on the main SideWalk webpage repo.
 
