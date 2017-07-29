@@ -1,6 +1,6 @@
 # Project Sidewalk - Instructions
 This repository contains instructions for you to get started contributing to
-projects under Project Sidewalk. For example, it contains instructions for installing PostgreSQL database server.
+projects under Project Sidewalk. It has instructions for you setup each of the components needed for the dev environment.
 
 ## PostgreSQL
 We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
