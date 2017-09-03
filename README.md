@@ -2,6 +2,8 @@
 This repository contains instructions for you to get started contributing to
 projects under Project Sidewalk. It has instructions for you setup each of the components needed for the dev environment.
 
+If you are running Linux, you can also set up your development environment using Docker. See the Project Sidewalk [docker repo](https://github.com/ProjectSidewalk/sidewalk-docker) for Docker configuration files and instructions.
+
 ## PostgreSQL
 We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
 PostgreSQL over other databases (e.g., MySQL) primarily because of its geographical data support.
