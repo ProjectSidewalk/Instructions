@@ -119,7 +119,7 @@ This is based on [this stackoverflow post](http://stackoverflow.com/questions/19
 
 1. In a terminal, go to the root directory of your Play project. Then run: `activator -jvm-debug 9998`
 2. Start the play application by entering `run` in the activator console.
-3. Set up IntelliJ's debug setting. Go to Run > Edit Configureations...
+3. Set up IntelliJ's debug setting. Go to Run > Edit Configurations...
 4. Add a new configuration; click "+" and select "Remote".
 5. Choose Transport: Socket, Debugger mode: Attach, Host: localhost, Port: 9998, and select the appropriate module's classpath. Click "Ok."
 6. Run a debugger and set break points. Then you should be good to go!
