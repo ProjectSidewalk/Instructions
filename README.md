@@ -59,7 +59,7 @@ vagrant@vagrant-ubuntu-trusty-64:~$ psql -d sidewalk -a -f sidewalk.sql
 ```
 
 ### 1.4 Browsing the data
-Once you import the data, you should be able to access it via command line or a database client. Download one of the Postgres clients listed below (e.g., Postico), and access the database using the following credential information:
+Once you import the data, you should be able to access it via command line or a database client. Download one of the Postgres clients listed [below](https://github.com/ProjectSidewalk/Instructions/tree/master#postgresql-clients) (e.g., Postico), and access the database using the following credential information:
 
 ```
 Host: localhost:5432
@@ -132,7 +132,7 @@ As you can see, we use Git and GitHub for version control and collaboration. See
   2. Make changes to the code in your branch
   3. Once you are done with editing the code, issue a "pull request"
   4. Wait for a code to be reviewed. (You can work on other stuff by branching )
-  5. Merge the code once reviewed. If there are conflicts, resolve it. (http://stackoverflow.com/questions/161813/fix-merge-conflicts-in-git)
+  5. Merge the code once reviewed. If there are conflicts, resolve it. See: [this stackoverflow post](http://stackoverflow.com/questions/161813/fix-merge-conflicts-in-git)
 * Pull Request:
   * [Using pull requests](https://help.github.com/articles/using-pull-requests/)
 * For more information, see:
