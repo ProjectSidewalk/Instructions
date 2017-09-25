@@ -7,8 +7,7 @@ If you are running Linux, you can also set up your development environment using
 ## PostgreSQL
 We use Postgres (or PostgreSQL) for persistent data storage of user data and GIS data. We choose
 PostgreSQL over other databases (e.g., MySQL) primarily because of its geographical data support.
-You can either install Postgres and plug-ins them on top of a virtual machine (recommended; easier to install) or
-directly into your computer.
+You can either install Postgres and plug-ins directly on your computer (not recommended), or use a virtual machine with Postgres already installed.
 
 ### 1.1 Installation
 * **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](https://github.com/ProjectSidewalk/Instructions/blob/master/README.md#111-virtual-box-and-vagrant-optional) below.**
