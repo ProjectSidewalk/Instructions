@@ -26,7 +26,7 @@ See [here](http://stackoverflow.com/questions/27768821/ssh-executable-not-found-
 and [here](https://gist.github.com/haf/2843680) for more information.)
 2. Check out this repo (on your local machine) by typing `git clone https://github.com/ProjectSidewalk/Instructions.git`
 3. To get to the Instructions folder, navigate directories using command line commands (e.g. cd). Type the following command in the directory (Instructions) where the `Vagrantfile` is located: `vagrant up`.  This will create a new Ubuntu Trusty 64 Bit virtual machine and configure it for this project. This step will take a while.
-4. When the set up completes, you should be able to log into the virtual machine you've just installed by typing: `vagrant ssh`. If you get a connection timeout error, and/or a "ssh\_exchange\_identification: read: Connection reset by peer" message, it may be the case that you need to enable hardware acceleration in the BIOS. See [this post](https://teamtreehouse.com/community/vagrant-ssh-sshexchangeidentification-read-connection-reset-by-peer).
+4. When the set up completes, you should be able to log into the virtual machine you've just installed by typing: `vagrant ssh`. If you get a connection timeout error, and/or a "ssh\_exchange\_identification: read: Connection reset by peer" message, it may be the case that you need to enable hardware acceleration in the BIOS. See [this post](https://teamtreehouse.com/community/vagrant-ssh-sshexchangeidentification-read-connection-reset-by-peer). Another issue may be that you need to disable Secure Boot.
 5. When you are done working, stop the virtual machine by running `vagrant suspend`. When you want to restart working again, use:
 ```
 vagrant resume
