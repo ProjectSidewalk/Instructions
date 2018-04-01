@@ -57,6 +57,8 @@ vagrant@vagrant-ubuntu-trusty-64:~$ cd /vagrant/resources
 vagrant@vagrant-ubuntu-trusty-64:~$ psql -d sidewalk -a -f sidewalk.sql
 ```
 
+When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`. If you received more errors, it is likely because the size of virtual disk for your VM is too small. If this is the case, you can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
+
 ### 1.4 Browsing the data
 Once you import the data, you should be able to access it via command line or a database client. Download one of the Postgres clients listed [below](https://github.com/ProjectSidewalk/Instructions/tree/master#postgresql-clients) (e.g., Postico), and access the database using the following credential information:
 
@@ -77,8 +79,6 @@ Maintenance DB: postgres
 Username: sidewalk
 Password: sidewalk
 ```
-
-When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`. If you received more errors, it is likely because the size of virtual disk for your VM is too small. If this is the case, you can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
 
 ### 1.5 Exporting the data
 To exporting the data in the server, run the following after logging into the server with ssh.
