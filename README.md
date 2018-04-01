@@ -78,6 +78,8 @@ Username: sidewalk
 Password: sidewalk
 ```
 
+When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`. If you received more errors, it is likely because the size of virtual disk for your VM is too small. If this is the case, you can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
+
 ### 1.5 Exporting the data
 To exporting the data in the server, run the following after logging into the server with ssh.
 
