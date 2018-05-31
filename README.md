@@ -33,7 +33,21 @@ vagrant resume
 vagrant ssh
 ```
 
-### 1.2 Accessing the Database
+### 1.2 Importing the data
+Once you have set up VirtualBox and Vagrant, send an email to Manaswi Saha (`manaswi@cs.uw.edu`) or Mikey Saugstad (`michaelssaugstad@gmail.com`) so they can send you the data to be imported into the database (`<sidewalk-dump-file>`). Once you get the data, put it under the directory `resources`, which you should create in the Instructions folder.
+
+To import data, you should run the following commands (you may need to run it as a super user. Run: `sudo su - postgres`):
+
+```
+$ vagrant ssh
+vagrant@vagrant-ubuntu-trusty-64:~$ cd /vagrant/resources
+vagrant@vagrant-ubuntu-trusty-64:~$ createdb -T template0 sidewalk
+vagrant@vagrant-ubuntu-trusty-64:~$ pg_restore -d sidewalk <sidewalk-dump-file>
+```
+
+When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`. If you received more errors, it is likely because the size of virtual disk for your VM is too small. If this is the case, you can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
+
+### 1.3 Accessing the Database
 Once you install Postgres using Vagrant, you should be able to access it at port 5432. Test if your database is up and running. Run the following commands on the directory where you have the Vagrant file:
 ```
 $ vagrant ssh
@@ -45,19 +59,6 @@ Check if the user name `sidewalk` exists on the database:
 psql -d sidewalk
 \du
 ```
-
-### 1.3 Importing the data
-Once you got the database set up, send an email to Manaswi Saha (`manaswi@cs.uw.edu`) or Mikey Saugstad (`michaelssaugstad@gmail.com`) so they can send you the data to be imported into the database (`sidewalk.sql`). If the SQL file name is different, rename it to `sidewalk.sql`. Once you get the data, put it under the directory `resources`, which you should create in the Instructions folder.
-
-To import data, you should run the following command (you may need to run it as a super user. Run: `sudo su - postgres`):
-
-```
-$ vagrant ssh
-vagrant@vagrant-ubuntu-trusty-64:~$ cd /vagrant/resources
-vagrant@vagrant-ubuntu-trusty-64:~$ psql -d sidewalk -a -f sidewalk.sql
-```
-
-When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`. If you received more errors, it is likely because the size of virtual disk for your VM is too small. If this is the case, you can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
 
 ### 1.4 Browsing the data
 Once you import the data, you should be able to access it via command line or a database client. Download one of the Postgres clients listed [below](https://github.com/ProjectSidewalk/Instructions/tree/master#postgresql-clients) (e.g., Postico), and access the database using the following credential information:
