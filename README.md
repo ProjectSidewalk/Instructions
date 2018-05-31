@@ -47,7 +47,7 @@ psql -d sidewalk
 ```
 
 ### 1.3 Importing the data
-Once you got the database set up, send an email to Manaswi Saha (`manaswi@cs.uw.edu`) or Michael Saugstad (`michaelssaugstad@gmail.com`) so they can send you the data to be imported into the database (`sidewalk.sql`). If the SQL file name is different, rename it to `sidewalk.sql`. Once you get the data, put it under the directory `resources`, which you should create in the Instructions folder.
+Once you got the database set up, send an email to Manaswi Saha (`manaswi@cs.uw.edu`) or Mikey Saugstad (`michaelssaugstad@gmail.com`) so they can send you the data to be imported into the database (`sidewalk.sql`). If the SQL file name is different, rename it to `sidewalk.sql`. Once you get the data, put it under the directory `resources`, which you should create in the Instructions folder.
 
 To import data, you should run the following command (you may need to run it as a super user. Run: `sudo su - postgres`):
 
