@@ -10,7 +10,7 @@ PostgreSQL over other databases (e.g., MySQL) primarily because of its geographi
 You can either install Postgres and plug-ins directly on your computer (not recommended), or use a virtual machine with Postgres already installed.
 
 ### 1.1 Installation
-* **(Recommended) If you installing them using a virtual machine, see [Virtual Box and Vagrant](https://github.com/ProjectSidewalk/Instructions/blob/master/README.md#111-virtual-box-and-vagrant-optional) below.**
+* **(Recommended) If you are installing them using a virtual machine, see [Virtual Box and Vagrant](https://github.com/ProjectSidewalk/Instructions/blob/master/README.md#111-virtual-box-and-vagrant-optional) below.**
 * If you are installing Postgres directly into your computer, see the following pages:
   * Windows:
     * [PostGIS](http://postgis.net/windows_downloads) : PostGIS's official web page. Follow the instruction to install PostgreSQL as well as PostGIS (> 2.0.0).
