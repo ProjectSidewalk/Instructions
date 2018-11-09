@@ -1,6 +1,6 @@
 # Project Sidewalk - Instructions
 This repository contains instructions for you to get started contributing to
-projects under Project Sidewalk. It has instructions for you setup each of the components needed for the dev environment.
+projects under Project Sidewalk. It has instructions for you to setup each of the components needed for the dev environment.
 
 If you are running Linux, you can also set up your development environment using Docker. See the Project Sidewalk [docker repo](https://github.com/ProjectSidewalk/sidewalk-docker) for Docker configuration files and instructions.
 
