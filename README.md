@@ -96,7 +96,7 @@ Follow this set-up instruction to contribute to the projects that use Java or Sc
 
 1. Install
 [Java Development Kit version 7 (JDK 7)](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
-JDK 8 is backward compatible and our code should work on it too.
+JDK 8 is backward compatible and our code should work on it too. Versions greater than 8 may experience bugs [(see issue)](https://github.com/ProjectSidewalk/SidewalkWebpage/issues/1346).
 2. Install [`activator`](https://www.lightbend.com/activator/download) (or [`sbt`](http://www.scala-sbt.org/)).
 
 ## JavaScript
