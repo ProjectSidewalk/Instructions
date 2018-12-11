@@ -45,7 +45,25 @@ vagrant@vagrant-ubuntu-trusty-64:~$ createdb -T template0 sidewalk
 vagrant@vagrant-ubuntu-trusty-64:~$ pg_restore -d sidewalk <sidewalk-dump-file>
 ```
 
-When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`. If you received more errors, it is likely because the size of virtual disk for your VM is too small. If this is the case, you can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
+When the import completes, you can expect the following warning: `WARNING: errors ignored on restore: 2`.
+
+#### Problems with importing the data
+If you received more than 2 errors, it is likely either because the size of virtual disk for your VM is too small OR because of a recent issue we've had where the `pgrouting` library isn't installed on the VM like it should be.
+
+Start by trying to install the `pgrouting` library. From [this installation guide](https://docs.pgrouting.org/2.2/en/doc/src/installation/installation.html):
+```
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+sudo apt-get install wget ca-certificates
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+
+sudo apt-get install postgresql-9.3-pgrouting
+```
+
+Then try dropping the database you had tried to restore by running `dropdb sidewalk`. Then try running the three import commands again.
+
+If you are trying to load a very large data dump or multiple data dumps, you may need to increase the size of the virtual disk. You can either get a smaller dump of the database or try using the [`vagrant-disksize plugin`](https://github.com/sprotheroe/vagrant-disksize) to expand the size of the virtual disk (we have only tried this using on Ubuntu 16.04 using Vagrant 1.9.7 and VirtualBox 5.1.26).
 
 ### 1.3 Accessing the Database
 Once you install Postgres using Vagrant, you should be able to access it at port 5432. Test if your database is up and running. Run the following commands on the directory where you have the Vagrant file:
