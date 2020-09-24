@@ -1,3 +1,8 @@
+# WARNING: These instructions are OLD and IRRELEVANT
+We now use Docker for our local dev and production environments. These instructions are **outdated** and **no longer relevant**. See discussion [here](https://github.com/ProjectSidewalk/SidewalkWebpage/issues/2258#issuecomment-698539753).
+
+For the more current dev environment instructions, see the README.md on the primary [SidewalkWebpage repo](https://github.com/ProjectSidewalk/SidewalkWebpage).
+
 # Project Sidewalk - Instructions
 This repository contains instructions for you to get started contributing to
 projects under Project Sidewalk. It has instructions for you to setup each of the components needed for the dev environment.
